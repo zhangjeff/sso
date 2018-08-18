@@ -6,4 +6,6 @@ package com.jeff.boot.config.api;
 public interface HelloWorldService {
 
     String sayHello(String name);
+
+    String sayGoodBye(String name);
 }

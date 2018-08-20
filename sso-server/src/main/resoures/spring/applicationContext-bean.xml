@@ -24,4 +24,11 @@
 			<value>utf-8</value>
 		</property>
     </bean>
+
+
+	<bean name="/HelloWorldService" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="helloWorldService">
+		</property>
+		<property name="serviceInterface" value="com.jeff.api.HelloWorldService"/>
+	</bean>
 </beans>

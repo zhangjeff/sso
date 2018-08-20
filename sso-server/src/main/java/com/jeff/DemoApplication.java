@@ -1,6 +1,6 @@
 package com.jeff;
 
-import com.jeff.boot.config.api.HelloWorldService;
+import com.jeff.api.HelloWorldService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

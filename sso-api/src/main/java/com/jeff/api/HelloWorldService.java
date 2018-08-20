@@ -1,4 +1,4 @@
-package com.jeff.boot.config.api;
+package com.jeff.api;
 
 /**
  * Created by zhangying on 2018/8/17.

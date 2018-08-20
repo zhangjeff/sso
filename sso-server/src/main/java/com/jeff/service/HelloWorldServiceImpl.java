@@ -1,6 +1,6 @@
 package com.jeff.service;
 
-import com.jeff.boot.config.api.HelloWorldService;
+import com.jeff.api.HelloWorldService;
 import org.springframework.stereotype.Service;
 
 /**

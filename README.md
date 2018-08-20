@@ -4,5 +4,5 @@ sso springboot
 2.支持swagger ui
 3.支持maven分模块
 4.支持hessian
-
+5.支持thymeleaf 页面
 

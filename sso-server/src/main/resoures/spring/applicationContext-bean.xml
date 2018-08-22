@@ -75,11 +75,4 @@
 		<property name="basePackage" value="com.jeff.mapper" />
 		<property name="sqlSessionFactoryBeanName" value="mySqlSessionFactory" />
 	</bean>
-
-
-	<!--<bean class="com.chinaredstar.perseus.db.MapperScannerConfigurer">-->
-		<!--<property name="basePackage" value="com.chinaredstar.rem.dao"/>-->
-		<!--<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>-->
-	<!--</bean>-->
-
 </beans>

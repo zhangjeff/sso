@@ -20,10 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 //@RestController
 @SpringBootApplication //Spring Boot核心注解，用于开启自动配置
 //@MapperScan("com.jeff.mapper")
-@ImportResource(locations= {"classpath:applicationContext-bean.xml"})
+@ImportResource(locations= {"classpath:spring/applicationContext-bean.xml"})
 public class DemoApplication {
 
-
+    @Autowired
+    private HelloWorldService helloWorldService;
 //    @RequestMapping("/index")
 //    String index(){
 //        return "Hello Spring Boot" + "22222";
@@ -33,7 +34,7 @@ public class DemoApplication {
         SpringApplication.run(DemoApplication.class, args);
     }
 
-
+//
 //    //发布服务
 //    @Bean(name = "/HelloWorldService")
 //    public HessianServiceExporter accountService() {

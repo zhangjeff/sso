@@ -1,6 +1,6 @@
 package com.jeff.boot.config;
 
-import com.jeff.boot.config.api.HelloWorldService;
+import com.jeff.api.HelloWorldService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	   xmlns:context="http://www.springframework.org/schema/context"
-	   xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
-	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
-    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
-    http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xsi:schemaLocation="
+    	http://www.springframework.org/schema/beans
+    	http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+    	http://www.springframework.org/schema/context
+    	http://www.springframework.org/schema/context/spring-context-4.2.xsd
+    	http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+    	">
+9999999
 
-    <context:component-scan base-package="com.jeff" />
+	<context:component-scan base-package="com.jeff" />
 
 	<context:annotation-config />
 
@@ -26,9 +33,52 @@
     </bean>
 
 
-	<bean name="/HelloWorldService" class="org.springframework.remoting.caucho.HessianServiceExporter">
-		<property name="service" ref="helloWorldService">
-		</property>
-		<property name="serviceInterface" value="com.jeff.api.HelloWorldService"/>
+	<!--<bean name="/HelloWorldService" class="org.springframework.remoting.caucho.HessianServiceExporter">-->
+		<!--<property name="service" ref="helloWorldService">-->
+		<!--</property>-->
+		<!--<property name="serviceInterface" value="com.jeff.api.HelloWorldService"/>-->
+	<!--</bean>-->
+
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+		<property name="url" value="jdbc:mysql://118.184.77.38:3306/db_user?useUnicode=true"></property>
+		<property name="username" value="wwy"></property>
+		<property name="password" value="wwy123"></property>
+		<property name="filters" value="stat" />
+
+		<property name="maxActive" value="50" />
+		<property name="initialSize" value="10" />
+		<property name="maxWait" value="15000" />
+		<property name="minIdle" value="1" />
+
+		<property name="timeBetweenEvictionRunsMillis" value="60000" />
+		<property name="minEvictableIdleTimeMillis" value="300000" />
+
+		<property name="testWhileIdle" value="true" />
+		<property name="testOnBorrow" value="false" />
+		<property name="testOnReturn" value="false" />
+
+		<property name="poolPreparedStatements" value="true" />
 	</bean>
+
+	<bean id="mySqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations">
+			<array>
+				<value>classpath*:sqlmapper/*.xml</value>
+			</array>
+		</property>
+		<property name="typeAliasesPackage" value="com.jeff.entity" />
+	</bean>
+
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer" lazy-init="true">
+		<property name="basePackage" value="com.jeff.mapper" />
+		<property name="sqlSessionFactoryBeanName" value="mySqlSessionFactory" />
+	</bean>
+
+
+	<!--<bean class="com.chinaredstar.perseus.db.MapperScannerConfigurer">-->
+		<!--<property name="basePackage" value="com.chinaredstar.rem.dao"/>-->
+		<!--<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>-->
+	<!--</bean>-->
+
 </beans>

@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.remoting.caucho.HessianServiceExporter;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,7 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 //@RestController
 @SpringBootApplication //Spring Boot核心注解，用于开启自动配置
-@MapperScan("com.jeff.mapper")
+//@MapperScan("com.jeff.mapper")
+@ImportResource(locations= {"classpath:applicationContext-bean.xml"})
 public class DemoApplication {
 
 

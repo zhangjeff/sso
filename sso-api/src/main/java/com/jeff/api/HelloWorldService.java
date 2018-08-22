@@ -8,4 +8,6 @@ public interface HelloWorldService {
     String sayHello(String name);
 
     String sayGoodBye(String name);
+
+    String getNameById(Integer id);
 }

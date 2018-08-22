@@ -5,4 +5,5 @@ sso springboot
 3.支持maven分模块
 4.支持hessian
 5.支持thymeleaf 页面
+6.支持mybatis
 

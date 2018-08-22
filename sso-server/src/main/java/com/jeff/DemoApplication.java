@@ -1,6 +1,7 @@
 package com.jeff;
 
 import com.jeff.api.HelloWorldService;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @SpringBootApplication //Spring Boot核心注解，用于开启自动配置
+@MapperScan("com.jeff.mapper")
 public class DemoApplication {
     @Autowired
     private HelloWorldService helloWorldService;

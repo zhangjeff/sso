@@ -32,12 +32,13 @@
 		</property>
     </bean>
 
+	<bean id="helloWorldService" class="com.jeff.service.HelloWorldServiceImpl"/>
 
-	<!--<bean name="/HelloWorldService" class="org.springframework.remoting.caucho.HessianServiceExporter">-->
-		<!--<property name="service" ref="helloWorldService">-->
-		<!--</property>-->
-		<!--<property name="serviceInterface" value="com.jeff.api.HelloWorldService"/>-->
-	<!--</bean>-->
+	<bean name="/HelloWorldService" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="helloWorldService">
+		</property>
+		<property name="serviceInterface" value="com.jeff.api.HelloWorldService"/>
+	</bean>
 
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
 		<property name="url" value="jdbc:mysql://118.184.77.38:3306/db_user?useUnicode=true"></property>

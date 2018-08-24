@@ -11,13 +11,13 @@ import org.springframework.remoting.caucho.HessianProxyFactoryBean;
  */
 @SpringBootApplication
 public class HessianClientApplication {
-    @Bean
-    public HessianProxyFactoryBean helloClient() {
-        HessianProxyFactoryBean factory = new HessianProxyFactoryBean();
-        factory.setServiceUrl("http://localhost:9999/demo/HelloWorldService");
-        factory.setServiceInterface(HelloWorldService.class);
-        return factory;
-    }
+//    @Bean
+//    public HessianProxyFactoryBean helloClient() {
+//        HessianProxyFactoryBean factory = new HessianProxyFactoryBean();
+//        factory.setServiceUrl("http://localhost:9999/demo/HelloWorldService");
+//        factory.setServiceInterface(HelloWorldService.class);
+//        return factory;
+//    }
 
     public static void main(String[] args) {
         SpringApplication.run(HessianClientApplication.class, args);

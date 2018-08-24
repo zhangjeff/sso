@@ -16,11 +16,11 @@ public class IndexController {
     }
 
 
-    @Autowired
-    private HelloWorldService helloWorldService;
+//    @Autowired
+//    private HelloWorldService helloWorldService;
 
-    @RequestMapping("/test")
-    public String test() {
-        return helloWorldService.sayHello("Spring boot with Hessian.");
-    }
+//    @RequestMapping("/test")
+//    public String test() {
+//        return helloWorldService.sayHello("Spring boot with Hessian.");
+//    }
 }

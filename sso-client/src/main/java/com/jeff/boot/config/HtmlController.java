@@ -12,8 +12,7 @@ public class HtmlController {
 
     @RequestMapping("/hello")
     public String hello(Model model) {
-//        model.addAttribute("name", "world333");
-
-        return "template/index";
+        model.addAttribute("name", "world333");
+        return "template/hello";
     }
 }

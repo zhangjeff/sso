@@ -31,4 +31,10 @@ public class LoginController {
         return "template/admin";
     }
 
+    @RequestMapping(value = "/rdurl", method = {RequestMethod.GET})
+    public String redirectUrl(Model model) {
+
+        return "redirect:http://www.sina.com.cn";
+    }
+
 }

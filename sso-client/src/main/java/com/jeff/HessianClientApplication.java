@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.remoting.caucho.HessianProxyFactoryBean;
 
 /**
@@ -13,6 +14,7 @@ import org.springframework.remoting.caucho.HessianProxyFactoryBean;
  */
 @SpringBootApplication
 @EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
+@ImportResource(locations= {"classpath:spring/applicationContext-bean.xml"})
 public class HessianClientApplication {
 //    @Bean
 //    public HessianProxyFactoryBean helloClient() {

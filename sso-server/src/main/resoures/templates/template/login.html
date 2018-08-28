@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>登录</title>
+
+</head>
+
+<body>
+    <form id="loginForm" action="/login" method="post" validate="true" vmessage="false">
+        <input id="account" name="account" type="text" class="form-control form-data" placeholder="登录名"
+                required="true" minlength = '4'/>
+        <input id="password" name="password" type="password" class="form-control form-data" placeholder="密码"
+               required="true" minlength = '6' maxlength = '16'/>
+        <button th:type="submit">提交</button>
+    </form>
+</body>
+</html>

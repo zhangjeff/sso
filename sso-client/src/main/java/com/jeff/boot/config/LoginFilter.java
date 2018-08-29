@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -27,8 +28,20 @@ public class LoginFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
 //        System.out.println("aaaaaa");
 //        System.out.println("bbbbbb");
+
+
         HttpServletResponse httpRes = (HttpServletResponse) servletResponse;
         HttpServletRequest request = (HttpServletRequest)servletRequest;
+
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies){
+                if ("user".equals(cookie.getName())) {
+                    httpRes.sendRedirect("http://www.sina.com.cn" );
+                }
+            }
+        }
+
         String backUrl = request.getRequestURL().toString();
         httpRes.sendRedirect("http://localhost:9999/demo/login?backUrl=" + backUrl);
     }

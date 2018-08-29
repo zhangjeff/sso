@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.util.StringUtils;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Created by zhangying on 2018/8/28.
@@ -26,7 +28,9 @@ public class LoginController {
     public String submitLogin(Model model,
                               @RequestParam(value = "account") String account,
                               @RequestParam(value = "password") String password,
-                              @RequestParam(value = "backUrl") String backUrl) {
+                              @RequestParam(value = "backUrl") String backUrl,
+                              HttpServletResponse response,
+                              HttpServletRequest request) {
         System.out.println("account =" + account);
         System.out.println("password =" + password);
 
@@ -39,12 +43,8 @@ public class LoginController {
         Cookie cookie = new Cookie("user", account);
         cookie.setMaxAge(360*24*60); //设置一年有效期
         cookie.setPath("/");
+        response.addCookie(cookie);
 
-
-//        Cookie cookie = new Cookie("user", user);
-//        15         cookie.setMaxAge(360*24*60);//设置一年有效期
-//        16         cookie.setPath("/");//可在同一应用服务器内共享方法
-//        17         response.addCookie(cookie);//放松到客户段
         return "template/admin";
     }
 

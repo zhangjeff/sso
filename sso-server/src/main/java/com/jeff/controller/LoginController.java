@@ -14,7 +14,6 @@ public class LoginController {
     @RequestMapping("/login")
     public String login(Model model,
                         @RequestParam(value = "backUrl", required = false) String backUrl) {
-//        model.addAttribute("backUrl", backUrl);
         model.addAttribute("backUrl", backUrl);
         return "template/login";
     }

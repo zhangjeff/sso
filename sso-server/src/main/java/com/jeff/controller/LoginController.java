@@ -1,9 +1,12 @@
 package com.jeff.controller;
 
+import com.jeff.entity.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.util.StringUtils;
+
+import javax.servlet.http.Cookie;
 
 /**
  * Created by zhangying on 2018/8/28.
@@ -30,8 +33,18 @@ public class LoginController {
         if (!StringUtils.isEmpty(backUrl)) {
             return "redirect:" + backUrl;
         }
-        String user = account + password;
+        User user = new User();
+        user.setUname(account);
 
+        Cookie cookie = new Cookie("user", account);
+        cookie.setMaxAge(360*24*60); //设置一年有效期
+        cookie.setPath("/");
+
+
+//        Cookie cookie = new Cookie("user", user);
+//        15         cookie.setMaxAge(360*24*60);//设置一年有效期
+//        16         cookie.setPath("/");//可在同一应用服务器内共享方法
+//        17         response.addCookie(cookie);//放松到客户段
         return "template/admin";
     }
 

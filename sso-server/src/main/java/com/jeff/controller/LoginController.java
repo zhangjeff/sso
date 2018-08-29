@@ -12,9 +12,10 @@ public class LoginController {
 
 
     @RequestMapping("/login")
-    public String login(Model model) {
-//        model.addAttribute("name", "world333");
-
+    public String login(Model model,
+                        @RequestParam(value = "backUrl", required = false) String backUrl) {
+//        model.addAttribute("backUrl", backUrl);
+        model.addAttribute("backUrl", "2222222222");
         return "template/login";
     }
 

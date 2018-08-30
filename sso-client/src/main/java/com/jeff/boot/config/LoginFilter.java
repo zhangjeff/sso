@@ -26,10 +26,6 @@ public class LoginFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-//        System.out.println("aaaaaa");
-//        System.out.println("bbbbbb");
-
-
         HttpServletResponse httpRes = (HttpServletResponse) servletResponse;
         HttpServletRequest request = (HttpServletRequest)servletRequest;
 
@@ -37,8 +33,7 @@ public class LoginFilter implements Filter {
         if (cookies != null) {
             for (Cookie cookie : cookies){
                 if ("user".equals(cookie.getName())) {
-//                    httpRes.sendRedirect("http://localhost:8888/client/html/hello" );
-//                     doFilter(servletRequest, servletResponse, filterChain);
+                    filterChain.doFilter(servletRequest, servletResponse);
                 }
             }
         } else {

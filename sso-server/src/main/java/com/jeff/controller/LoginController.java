@@ -34,9 +34,7 @@ public class LoginController {
         System.out.println("account =" + account);
         System.out.println("password =" + password);
 
-        if (!StringUtils.isEmpty(backUrl)) {
-            return "redirect:" + backUrl;
-        }
+
         User user = new User();
         user.setUname(account);
 
@@ -44,6 +42,10 @@ public class LoginController {
         cookie.setMaxAge(360*24*60); //设置一年有效期
         cookie.setPath("/");
         response.addCookie(cookie);
+
+        if (!StringUtils.isEmpty(backUrl)) {
+            return "redirect:" + backUrl;
+        }
 
         return "template/admin";
     }

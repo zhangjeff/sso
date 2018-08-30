@@ -37,13 +37,14 @@ public class LoginFilter implements Filter {
         if (cookies != null) {
             for (Cookie cookie : cookies){
                 if ("user".equals(cookie.getName())) {
-                    httpRes.sendRedirect("http://www.sina.com.cn" );
+//                    httpRes.sendRedirect("http://localhost:8888/client/html/hello" );
+//                     doFilter(servletRequest, servletResponse, filterChain);
                 }
             }
+        } else {
+            String backUrl = request.getRequestURL().toString();
+            httpRes.sendRedirect("http://localhost:9999/demo/login?backUrl=" + backUrl);
         }
-
-        String backUrl = request.getRequestURL().toString();
-        httpRes.sendRedirect("http://localhost:9999/demo/login?backUrl=" + backUrl);
     }
 
     @Override

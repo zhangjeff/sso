@@ -41,28 +41,36 @@ public class LoginFilter implements Filter {
         String token = null;
         if (sessionUser != null){
             token = sessionUser.getToken();
+
         }
-        if (token == null) {
-              token = request.getParameter("token");
+
+        if (token != null) {
 //            SessionUser sesUser = new SessionUser(token, "jeff");
 //            WebUtils.setSessionAttribute(request, SESSION_USER, sesUser);
             filterChain.doFilter(servletRequest, servletResponse);
-        }
-
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null) {
-            for (Cookie cookie : cookies){
-                if ("user".equals(cookie.getName())) {
-
-                    token = request.getParameter("token");
-                    SessionUser sesUser = new SessionUser(token, "jeff");
-                    WebUtils.setSessionAttribute(request, SESSION_USER, sesUser);
-                    filterChain.doFilter(servletRequest, servletResponse);
-                }
-            }
         } else {
-            String backUrl = request.getRequestURL().toString();
-            httpRes.sendRedirect("http://localhost:9999/demo/login?backUrl=" + backUrl);
+            token = request.getParameter("token");
+            if (token != null) {
+                SessionUser sesUser = new SessionUser(token, "jeff");
+                WebUtils.setSessionAttribute(request, SESSION_USER, sesUser);
+                filterChain.doFilter(servletRequest, servletResponse);
+            } else {
+                String backUrl = request.getRequestURL().toString();
+                httpRes.sendRedirect("http://localhost:9999/demo/login?backUrl=" + backUrl);
+            }
+//            token = request.getParameter("token");
+//
+//            Cookie[] cookies = request.getCookies();
+//            if (cookies != null) {
+//                for (Cookie cookie : cookies){
+//                    if ("user".equals(cookie.getName())) {
+//
+//
+//                    }
+//                }
+//            } else {
+//
+//            }
         }
     }
 

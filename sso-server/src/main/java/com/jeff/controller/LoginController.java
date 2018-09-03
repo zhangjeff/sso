@@ -55,7 +55,7 @@ public class LoginController {
             else {
                 sbf.append("?");
             }
-            sbf.append("token").append(token);
+            sbf.append("token=").append(token);
             return sbf.toString();
         }
 

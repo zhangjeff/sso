@@ -1,5 +1,6 @@
 package com.jeff.controller;
 
+import com.jeff.IdProvider.IdProvider;
 import com.jeff.entity.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,8 +44,19 @@ public class LoginController {
         cookie.setPath("/");
         response.addCookie(cookie);
 
+        String token = IdProvider.createUUIDId();
+
+
         if (!StringUtils.isEmpty(backUrl)) {
-            return "redirect:" + backUrl;
+            StringBuffer sbf = new StringBuffer("redirect:").append(backUrl);
+            if (backUrl.indexOf("?") > 0) {
+                sbf.append("&");
+            }
+            else {
+                sbf.append("?");
+            }
+            sbf.append("token").append(token);
+            return sbf.toString();
         }
 
         return "template/admin";

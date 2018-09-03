@@ -2,6 +2,7 @@ package com.jeff.boot.config;
 
 
 import com.jeff.model.SessionUser;
+import groovyjarjarantlr.StringUtils;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.stereotype.Component;
 import org.springframework.web.util.WebUtils;
@@ -37,8 +38,12 @@ public class LoginFilter implements Filter {
 
 //        WebUtils.setSessionAttribute(request, SESSION_USER, sessionUser);
         SessionUser sessionUser = (SessionUser) WebUtils.getSessionAttribute(request, SESSION_USER);
-        if (sessionUser != null) {
-            String token = request.getParameter("token");
+        String token = null;
+        if (sessionUser != null){
+            token = sessionUser.getToken();
+        }
+        if (token == null) {
+              token = request.getParameter("token");
 //            SessionUser sesUser = new SessionUser(token, "jeff");
 //            WebUtils.setSessionAttribute(request, SESSION_USER, sesUser);
             filterChain.doFilter(servletRequest, servletResponse);
@@ -49,7 +54,7 @@ public class LoginFilter implements Filter {
             for (Cookie cookie : cookies){
                 if ("user".equals(cookie.getName())) {
 
-                    String token = request.getParameter("token");
+                    token = request.getParameter("token");
                     SessionUser sesUser = new SessionUser(token, "jeff");
                     WebUtils.setSessionAttribute(request, SESSION_USER, sesUser);
                     filterChain.doFilter(servletRequest, servletResponse);

@@ -49,4 +49,12 @@ public class LocalTokenManager extends  TokenManager{
         private User user;
         private Date expired; // 过期时间
     }
+
+    @Override
+    public void addToken(String token, User user) {
+        DummyUser dummyUser = new DummyUser();
+        dummyUser.user=user;
+        dummyUser.expired = new Date(new Date().getTime() + 3000);
+        tokenMap.put(token, dummyUser);
+    }
 }

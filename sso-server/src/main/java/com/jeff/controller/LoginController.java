@@ -2,6 +2,8 @@ package com.jeff.controller;
 
 import com.jeff.IdProvider.IdProvider;
 import com.jeff.entity.User;
+import com.jeff.service.TokenManager;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +19,8 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class LoginController {
 
+    @Autowired
+    private TokenManager tokenManager;
 
     @RequestMapping("/login")
     public String login(Model model,
@@ -44,9 +48,7 @@ public class LoginController {
         cookie.setPath("/");
         response.addCookie(cookie);
 
-        String token = IdProvider.createUUIDId();
-
-
+        String token = addToken(user);
         if (!StringUtils.isEmpty(backUrl)) {
             StringBuffer sbf = new StringBuffer("redirect:").append(backUrl);
             if (backUrl.indexOf("?") > 0) {
@@ -60,6 +62,12 @@ public class LoginController {
         }
 
         return "template/admin";
+    }
+
+    private String addToken(User user){
+        String token = IdProvider.createUUIDId();
+        tokenManager.addToken(token, user);
+        return token;
     }
 
     @RequestMapping(value = "/rdurl", method = {RequestMethod.GET})

@@ -36,4 +36,13 @@ public abstract class TokenManager {
      */
     public abstract User validate(String token);
 
+
+    /**
+     * 用户授权成功后将授权信息存入
+     *
+     * @param token
+     * @param user
+     */
+    public abstract void addToken(String token, User user);
+
 }

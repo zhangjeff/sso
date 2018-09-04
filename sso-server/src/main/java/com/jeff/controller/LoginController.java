@@ -69,11 +69,4 @@ public class LoginController {
         tokenManager.addToken(token, user);
         return token;
     }
-
-    @RequestMapping(value = "/rdurl", method = {RequestMethod.GET})
-    public String redirectUrl(Model model) {
-
-        return "redirect:http://www.sina.com.cn";
-    }
-
 }

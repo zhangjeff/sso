@@ -3,7 +3,6 @@ package com.jeff.boot.config;
 
 import com.jeff.api.AuthenticationRpcService;
 import com.jeff.model.SessionUser;
-import groovyjarjarantlr.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.stereotype.Component;
@@ -11,7 +10,6 @@ import org.springframework.web.util.WebUtils;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -50,6 +48,7 @@ public class LoginFilter implements Filter {
         if (token != null) {
             boolean flag = authenticationRpcService.validate(token);
             if (!flag) {
+
                 String backUrl = request.getRequestURL().toString();
                 httpRes.sendRedirect("http://localhost:9999/demo/login?backUrl=" + backUrl);
             }

@@ -54,7 +54,7 @@ public class LocalTokenManager extends  TokenManager{
     public void addToken(String token, User user) {
         DummyUser dummyUser = new DummyUser();
         dummyUser.user=user;
-        dummyUser.expired = new Date(new Date().getTime() + 3000);
+        dummyUser.expired = new Date(new Date().getTime() + 8000);
         tokenMap.put(token, dummyUser);
     }
 }

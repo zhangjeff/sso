@@ -48,7 +48,7 @@ public class LoginFilter implements Filter {
         if (token != null) {
             boolean flag = authenticationRpcService.validate(token);
             if (!flag) {
-
+                WebUtils.setSessionAttribute(request, SESSION_USER, null);
                 String backUrl = request.getRequestURL().toString();
                 httpRes.sendRedirect("http://localhost:9999/demo/login?backUrl=" + backUrl);
             }

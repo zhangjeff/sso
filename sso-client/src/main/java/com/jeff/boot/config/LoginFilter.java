@@ -1,8 +1,10 @@
 package com.jeff.boot.config;
 
 
+import com.jeff.api.AuthenticationRpcService;
 import com.jeff.model.SessionUser;
 import groovyjarjarantlr.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.stereotype.Component;
 import org.springframework.web.util.WebUtils;
@@ -23,6 +25,9 @@ import java.io.IOException;
 public class LoginFilter implements Filter {
 
     public static final String SESSION_USER = "_sessionUser";
+
+    @Autowired
+    private AuthenticationRpcService authenticationRpcService;
 
 
     @Override
@@ -45,6 +50,11 @@ public class LoginFilter implements Filter {
         }
 
         if (token != null) {
+            boolean flag = authenticationRpcService.validate(token);
+            if (!flag) {
+                String backUrl = request.getRequestURL().toString();
+                httpRes.sendRedirect("http://localhost:9999/demo/login?backUrl=" + backUrl);
+            }
 //            SessionUser sesUser = new SessionUser(token, "jeff");
 //            WebUtils.setSessionAttribute(request, SESSION_USER, sesUser);
             filterChain.doFilter(servletRequest, servletResponse);

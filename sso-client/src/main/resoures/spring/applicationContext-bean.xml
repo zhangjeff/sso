@@ -20,7 +20,13 @@
 	<aop:aspectj-autoproxy proxy-target-class="true" expose-proxy="true"/>
 
 	<context:property-placeholder properties-ref="propertiesConfig" order="3" />
-    
+
+	<bean id="clientSpring" class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="serviceUrl"><value>http://localhost:9999/demo/AuthenticationRpcService</value></property>
+		<property name="serviceInterface"><value>com.jeff.api.AuthenticationRpcService</value></property>
+	</bean>
+
+
 	<bean id="propertiesConfig" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
     	<property name="locations">
     		<list>

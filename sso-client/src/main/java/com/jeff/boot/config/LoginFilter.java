@@ -40,8 +40,6 @@ public class LoginFilter implements Filter {
         HttpServletResponse httpRes = (HttpServletResponse) servletResponse;
         HttpServletRequest request = (HttpServletRequest)servletRequest;
 
-
-//        WebUtils.setSessionAttribute(request, SESSION_USER, sessionUser);
         SessionUser sessionUser = (SessionUser) WebUtils.getSessionAttribute(request, SESSION_USER);
         String token = null;
         if (sessionUser != null){
@@ -55,8 +53,6 @@ public class LoginFilter implements Filter {
                 String backUrl = request.getRequestURL().toString();
                 httpRes.sendRedirect("http://localhost:9999/demo/login?backUrl=" + backUrl);
             }
-//            SessionUser sesUser = new SessionUser(token, "jeff");
-//            WebUtils.setSessionAttribute(request, SESSION_USER, sesUser);
             filterChain.doFilter(servletRequest, servletResponse);
         } else {
             token = request.getParameter("token");

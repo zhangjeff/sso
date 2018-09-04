@@ -16,13 +16,6 @@ import org.springframework.remoting.caucho.HessianProxyFactoryBean;
 @EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
 @ImportResource(locations= {"classpath:spring/applicationContext-bean.xml"})
 public class HessianClientApplication {
-//    @Bean
-//    public HessianProxyFactoryBean helloClient() {
-//        HessianProxyFactoryBean factory = new HessianProxyFactoryBean();
-//        factory.setServiceUrl("http://localhost:9999/demo/HelloWorldService");
-//        factory.setServiceInterface(HelloWorldService.class);
-//        return factory;
-//    }
 
     public static void main(String[] args) {
         SpringApplication.run(HessianClientApplication.class, args);

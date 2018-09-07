@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 //@RestController
 @SpringBootApplication //Spring Boot核心注解，用于开启自动配置
 //@MapperScan("com.jeff.mapper")
-@ImportResource(locations= {"classpath:spring/applicationContext-bean.xml"})
+@ImportResource(locations= {"classpath:spring/applicationContext-*.xml"})
 public class DemoApplication {
 
     public static void main(String[] args) {

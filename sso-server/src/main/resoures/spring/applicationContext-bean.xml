@@ -25,7 +25,9 @@
     	<property name="locations">
     		<list>
     			<value>classpath:system.properties</value>
-    		</list>
+				<value>classpath:service.properties</value>
+				<value>classpath:dubbo.properties</value>
+			</list>
     	</property>
 		<property name="fileEncoding">
 			<value>utf-8</value>
@@ -34,21 +36,21 @@
 
 	<bean id="helloWorldService" class="com.jeff.service.HelloWorldServiceImpl"/>
 
-	<bean name="/HelloWorldService" class="org.springframework.remoting.caucho.HessianServiceExporter">
-		<property name="service" ref="helloWorldService">
-		</property>
-		<property name="serviceInterface" value="com.jeff.api.HelloWorldService"/>
-	</bean>
+	<!--<bean name="/HelloWorldService" class="org.springframework.remoting.caucho.HessianServiceExporter">-->
+		<!--<property name="service" ref="helloWorldService">-->
+		<!--</property>-->
+		<!--<property name="serviceInterface" value="com.jeff.api.HelloWorldService"/>-->
+	<!--</bean>-->
 
 
 	<bean id="tokenManager" class="com.jeff.service.LocalTokenManager"/>
-	<bean id="authenticationRpcService" class="com.jeff.service.AuthenticationRpcServiceImpl" />
+	<!--<bean id="authenticationRpcService" class="com.jeff.service.AuthenticationRpcServiceImpl" />-->
 
-	<bean name="/AuthenticationRpcService" class="org.springframework.remoting.caucho.HessianServiceExporter">
-		<property name="service" ref="authenticationRpcService">
-		</property>
-		<property name="serviceInterface" value="com.jeff.api.AuthenticationRpcService"/>
-	</bean>
+	<!--<bean name="/AuthenticationRpcService" class="org.springframework.remoting.caucho.HessianServiceExporter">-->
+		<!--<property name="service" ref="authenticationRpcService">-->
+		<!--</property>-->
+		<!--<property name="serviceInterface" value="com.jeff.api.AuthenticationRpcService"/>-->
+	<!--</bean>-->
 
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
 		<property name="url" value="${url}"></property>

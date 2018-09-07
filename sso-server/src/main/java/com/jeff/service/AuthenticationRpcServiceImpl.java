@@ -8,7 +8,7 @@ import javax.annotation.Resource;
 /**
  * Created by zhangying on 2018/9/4.
  */
-@Service
+
 public class AuthenticationRpcServiceImpl implements AuthenticationRpcService {
 
     @Resource

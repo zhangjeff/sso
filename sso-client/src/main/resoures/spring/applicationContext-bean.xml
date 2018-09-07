@@ -21,16 +21,18 @@
 
 	<context:property-placeholder properties-ref="propertiesConfig" order="3" />
 
-	<bean id="clientSpring" class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
-		<property name="serviceUrl"><value>http://localhost:9999/demo/AuthenticationRpcService</value></property>
-		<property name="serviceInterface"><value>com.jeff.api.AuthenticationRpcService</value></property>
-	</bean>
+	<!--<bean id="clientSpring" class="org.springframework.remoting.caucho.HessianProxyFactoryBean">-->
+		<!--<property name="serviceUrl"><value>http://localhost:9999/demo/AuthenticationRpcService</value></property>-->
+		<!--<property name="serviceInterface"><value>com.jeff.api.AuthenticationRpcService</value></property>-->
+	<!--</bean>-->
 
 
 	<bean id="propertiesConfig" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
     	<property name="locations">
     		<list>
-    			<value>classpath:system.properties</value>
+				<value>classpath:system.properties</value>
+				<value>classpath:service.properties</value>
+				<value>classpath:dubbo.properties</value>
     		</list>
     	</property>
 		<property name="fileEncoding">

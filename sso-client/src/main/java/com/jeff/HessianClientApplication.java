@@ -21,7 +21,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * Created by zhangying on 2018/8/18.
  */
 @SpringBootApplication
-@EnableAutoConfiguration(exclude={SessionAutoConfiguration.class,DataSourceAutoConfiguration.class, ThymeleafAutoConfiguration.class})
+@EnableAutoConfiguration(exclude={SessionAutoConfiguration.class,DataSourceAutoConfiguration.class})
 @ImportResource(locations= {"classpath:spring/applicationContext-*.xml"})
 public class HessianClientApplication extends WebMvcConfigurerAdapter implements EmbeddedServletContainerCustomizer,ApplicationContextAware{
     private ApplicationContext applicationContext;

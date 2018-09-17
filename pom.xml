@@ -19,6 +19,7 @@
 		<module>sso-api</module>
 		<module>sso-server</module>
 		<module>sso-client</module>
+		<module>sso-demo</module>
 	</modules>
 
 </project>

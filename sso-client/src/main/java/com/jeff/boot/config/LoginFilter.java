@@ -58,6 +58,11 @@ public class LoginFilter implements Filter {
         if (token != null) {
             boolean flag = authenticationRpcService.validate(token);
             if (!flag) {
+                Cookie cookie = new Cookie("sso",null);
+                cookie.setMaxAge(0);
+                cookie.setPath("/");
+                httpRes.addCookie(cookie);
+
                 WebUtils.setSessionAttribute(request, SESSION_USER, null);
                 String backUrl = request.getRequestURL().toString();
                 httpRes.sendRedirect("http://localhost:9999/sso/login?backUrl=" + backUrl);
@@ -70,7 +75,7 @@ public class LoginFilter implements Filter {
 
                 WebUtils.setSessionAttribute(request, SESSION_USER, sesUser);
                 Cookie cookie = new Cookie("sso", token);
-                cookie.setMaxAge(360*24*60); //设置一年有效期
+                cookie.setMaxAge(-60); //设置一年有效期
                 cookie.setPath("/");
                 cookie.setDomain(request.getServerName());
                 httpRes.addCookie(cookie);

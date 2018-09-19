@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.stereotype.Component;
 import org.springframework.web.util.WebUtils;
+import org.thymeleaf.util.StringUtils;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -37,10 +39,18 @@ public class LoginFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletResponse httpRes = (HttpServletResponse) servletResponse;
         HttpServletRequest request = (HttpServletRequest)servletRequest;
+        Cookie[] cookies = request.getCookies();
+        String token = null;
+        if (cookies != null) {
+            for (Cookie cookie : cookies){
+                if ("sso".equals(cookie.getName())) {
+                    token = cookie.getValue();
+                }
+            }
+        }
 
         SessionUser sessionUser = (SessionUser) WebUtils.getSessionAttribute(request, SESSION_USER);
-        String token = null;
-        if (sessionUser != null){
+        if (sessionUser != null  && StringUtils.isEmpty(token)){
             token = sessionUser.getToken();
 
         }
@@ -57,7 +67,14 @@ public class LoginFilter implements Filter {
             token = request.getParameter("token");
             if (token != null) {
                 SessionUser sesUser = new SessionUser(token, "jeff");
+
                 WebUtils.setSessionAttribute(request, SESSION_USER, sesUser);
+                Cookie cookie = new Cookie("sso", token);
+                cookie.setMaxAge(360*24*60); //设置一年有效期
+                cookie.setPath("/");
+                cookie.setDomain(request.getServerName());
+                httpRes.addCookie(cookie);
+
                 filterChain.doFilter(servletRequest, servletResponse);
             } else {
                 String backUrl = request.getRequestURL().toString();

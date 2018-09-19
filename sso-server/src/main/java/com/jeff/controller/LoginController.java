@@ -43,10 +43,11 @@ public class LoginController {
         User user = new User();
         user.setUname(account);
 
-        Cookie cookie = new Cookie("user", account);
-        cookie.setMaxAge(360*24*60); //设置一年有效期
-        cookie.setPath("/");
-        response.addCookie(cookie);
+//        Cookie cookie = new Cookie("sso", account);
+//        cookie.setMaxAge(360*24*60); //设置一年有效期
+//        cookie.setPath("/");
+//        cookie.setDomain(request.getServerName());
+//        response.addCookie(cookie);
 
         String token = addToken(user);
         if (!StringUtils.isEmpty(backUrl)) {
